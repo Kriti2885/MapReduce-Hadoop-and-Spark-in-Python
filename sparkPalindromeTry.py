@@ -13,7 +13,7 @@ def findPalindrome(x):
 
 sc = pyspark.SparkContext()
 print("Job Running..")
-rddData = sc.textFile("gs://dataproc-37bf26ad-209a-48cf-9193-c82e1c017f8c-us-central1/dummyData/*")
+rddData = sc.textFile("../dummyData/*")
 
 splittedData = rddData.flatMap(lambda x: x.split(" "))
 loweredData = splittedData.map(lambda x: x.lower())
@@ -31,4 +31,4 @@ reduced = sorted(reduced_result)
 
 print(reduced)
 rdd = sc.parallelize(reduced)
-rdd.saveAsTextFile("gs://dataproc-37bf26ad-209a-48cf-9193-c82e1c017f8c-us-central1/dummy_output_spark_palindrome")
+rdd.saveAsTextFile("../dummy_output_spark_palindrome")
