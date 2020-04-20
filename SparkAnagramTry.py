@@ -21,7 +21,7 @@ def extend(a, b):
 
 sc = pyspark.SparkContext()
 print("Job Running..")
-rddData = sc.textFile("gs://dataproc-37bf26ad-209a-48cf-9193-c82e1c017f8c-us-central1/dummyData/*")
+rddData = sc.textFile("../dummyData/*")
 
 splittedData = rddData.flatMap(lambda x: x.split(" "))
 loweredData = splittedData.map(lambda x: x.lower())
@@ -42,4 +42,4 @@ for i in range(len(result)):
         reduced_result.append((result[i][0], values))
 reduced_result.sort(key = lambda x: x[1])
 rdd = sc.parallelize(reduced_result)
-rdd.saveAsTextFile("gs://dataproc-37bf26ad-209a-48cf-9193-c82e1c017f8c-us-central1/dummy_output_spark_anagram")
+rdd.saveAsTextFile("../dummy_output_spark_anagram")
